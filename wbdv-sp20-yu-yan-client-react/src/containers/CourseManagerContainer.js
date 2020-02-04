@@ -3,6 +3,7 @@ import CourseService from "../services/CourseService"
 import CourseTableComponent from "../components/CourseTableComponent"
 import CourseManagerNavComponent from "../components/CourseManagerNavComponent"
 import CourseGridComponent from "../components/CourseGridComponent";
+import CourseEditorComponent from "../components/CourseEditorComponent";
 
 const courseService = new CourseService();
 
@@ -10,6 +11,8 @@ class CourseManagerContainer extends React.Component {
 
   state = {
     layout: 'table',
+    activateEditor: false,
+    whichCourse: null,
     newCourseTitle: 'New Course',
     courses: []
   };
@@ -74,49 +77,70 @@ class CourseManagerContainer extends React.Component {
     })
   };
 
+  activateCourseEditor = (course) => {
+    this.setState({
+      activateEditor: true,
+      whichCourse: course
+    })
+  };
+
   render() {
     return (
       <div>
-        <CourseManagerNavComponent
-            toggle={this.toggle}
-            updateFormState={this.updateFormState}
-            addCourse={this.addCourse}
-            state={this.state}/>
         {
-          this.state.layout === "table" &&
-          <div className="bg-light">
-            <div className="container-fluid">
-              <div className="col-8 mx-auto">
+          !this.state.activateEditor &&
+              <div>
+                <CourseManagerNavComponent
+                    toggle={this.toggle}
+                    updateFormState={this.updateFormState}
+                    addCourse={this.addCourse}
+                    state={this.state}/>
                 {
                   this.state.layout === "table" &&
-                  <CourseTableComponent
-                      editCourse={this.editCourse}
-                      deleteCourse={this.deleteCourse}
-                      courses={this.state.courses}/>
-                }
-              </div>
-            </div>
-          </div>
-        }
-        {
-          this.state.layout === "grid" &&
-          <div className="bg-light">
-            <div className="container-fluid">
-              <div className="col-8 mx-auto">
-                <table className="table table-hover">
-                  <tbody>
+                  <div className="bg-light">
+                  <div className="container-fluid">
+                  <div className="col-8 mx-auto">
                   {
-                    this.state.layout === "grid" &&
-                    <CourseGridComponent
+                    this.state.layout === "table" &&
+                    <CourseTableComponent
+                        activateCourseEditor={this.activateCourseEditor}
                         editCourse={this.editCourse}
                         deleteCourse={this.deleteCourse}
                         courses={this.state.courses}/>
                   }
-                  </tbody>
+                  </div>
+                  </div>
+                  </div>
+                }
+                {
+                this.state.layout === "grid" &&
+                <div className="bg-light">
+                <div className="container-fluid">
+                <div className="col-8 mx-auto">
+                <table className="table table-hover">
+                <tbody>
+                  {
+                    this.state.layout === "grid" &&
+                    <CourseGridComponent
+                        activateCourseEditor={this.activateCourseEditor}
+                        editCourse={this.editCourse}
+                        deleteCourse={this.deleteCourse}
+                        courses={this.state.courses}/>
+                  }
+                </tbody>
                 </table>
+                </div>
+                </div>
+                </div>
+                }
               </div>
-            </div>
-          </div>
+        }
+        {
+          this.state.activateEditor &&
+              <div>
+                <CourseEditorComponent
+                  course={this.state.whichCourse}/>
+              </div>
         }
       </div>
     )

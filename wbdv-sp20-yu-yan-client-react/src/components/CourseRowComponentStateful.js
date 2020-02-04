@@ -37,8 +37,6 @@ class CourseRowComponentStateful extends React.Component {
     }))
   };
 
-  updateForm = (e) => {};
-
   render() {
     return (
         <tr className={`${this.state.active?'bg-secondary':''}`}
@@ -52,7 +50,8 @@ class CourseRowComponentStateful extends React.Component {
             !this.state.input &&
             <td style={{width: '25%'}}>
               <a href="#"
-                 className="font-weight-bold">
+                 className="font-weight-bold"
+                 onClick={() => this.props.activateCourseEditor(this.props.course)}>
                 {
                   this.props.course.title
                 }
