@@ -1,7 +1,7 @@
 import React from "react";
 import CourseManagerNavComponentStateful from "./CourseManagerNavComponentStateful"
 
-const CourseManagerNavComponent = ({toggle, updateFormState, addCourse}) =>
+const CourseManagerNavComponent = ({toggle, state, updateFormState, addCourse}) =>
     <div>
       <nav className="navbar navbar-dark bg-dark">
         <label
@@ -38,7 +38,8 @@ const CourseManagerNavComponent = ({toggle, updateFormState, addCourse}) =>
         </div>
       </nav>
       <CourseManagerNavComponentStateful
-        toggle={toggle}/>
+        toggle={toggle}
+        state={state}/>
     </div>;
 
 export default CourseManagerNavComponent;

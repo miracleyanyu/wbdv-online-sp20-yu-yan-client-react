@@ -80,7 +80,8 @@ class CourseManagerContainer extends React.Component {
         <CourseManagerNavComponent
             toggle={this.toggle}
             updateFormState={this.updateFormState}
-            addCourse={this.addCourse}/>
+            addCourse={this.addCourse}
+            state={this.state}/>
         {
           this.state.layout === "table" &&
           <div className="bg-light">

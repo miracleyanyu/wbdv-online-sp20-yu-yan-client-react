@@ -1,5 +1,5 @@
 import React from 'react'
-import CourseGridCardComponent from './CourseGridCardComponent'
+import CourseGridCardComponentStateful from './CourseGridCardComponentStateful'
 
 const CourseGridComponent = ({editCourse, deleteCourse, courses}) =>
     <div>
@@ -7,7 +7,7 @@ const CourseGridComponent = ({editCourse, deleteCourse, courses}) =>
         {
           courses.map(function(course, index) {
             return (
-                <CourseGridCardComponent
+                <CourseGridCardComponentStateful
                     editCourse={editCourse}
                     key={course._id}
                     deleteCourse={deleteCourse}

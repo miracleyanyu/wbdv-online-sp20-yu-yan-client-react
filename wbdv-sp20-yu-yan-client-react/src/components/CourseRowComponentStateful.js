@@ -13,7 +13,7 @@ class CourseRowComponentStateful extends React.Component {
 
   activeCourse = () => {
     this.setState(prevState => ({
-      active: !prevState.active
+      active: !prevState.input? !prevState.active:false
     }))
   };
 
@@ -23,16 +23,10 @@ class CourseRowComponentStateful extends React.Component {
     }))
   };
 
-  saveCourse = () => {
-    this.setState(prevState => ({
-      active: !prevState.active
-    }))
-  };
-
   showInputField = () => {
     this.setState({
       input: true,
-      active: true
+      active: false
     })
   };
 
@@ -47,16 +41,22 @@ class CourseRowComponentStateful extends React.Component {
 
   render() {
     return (
-        <tr className={`${this.state.active?'active':''}`}
+        <tr className={`${this.state.active?'bg-secondary':''}`}
             onClick={() => this.activeCourse()}>
           <th scope="row"
-              style={{width: '15%'}}/>
+              style={{width: '15%'}}
+              className="text-right">
+            <i className="far fa-file-alt col-md-auto text-primary wbdv-row wbdv-icon"/>
+          </th>
           {
             !this.state.input &&
             <td style={{width: '25%'}}>
-              {
-                this.props.course.title
-              }
+              <a href="#"
+                 className="font-weight-bold">
+                {
+                  this.props.course.title
+                }
+              </a>
             </td>
           }
           {
@@ -66,11 +66,11 @@ class CourseRowComponentStateful extends React.Component {
                      onChange={(e) => this.props.editCourse(this.props.course, e.target.value)}/>
             </td>
           }
-          <td className="text-center"
+          <td className="text-center  d-none d-lg-table-cell"
               style={{width: '15%'}}>
             me
           </td>
-          <td className="text-center"
+          <td className="text-center  d-none d-lg-table-cell"
               style={{width: '15%'}}>
             6:45 PM
           </td>
@@ -84,9 +84,11 @@ class CourseRowComponentStateful extends React.Component {
             this.state.active && !this.state.input &&
             <td>
               <span>
-                <button onClick={() => this.showInputField()}>Edit</button>
-                <button onClick={(event) => this.props.deleteCourse(
-                    this.props.course)}>Delete</button>
+                <i className="fas fa-pencil-alt col-md-auto"
+                   onClick={() => this.showInputField()}/>
+                <i className="far fa-trash-alt col-md-auto"
+                   onClick={(event) => this.props.deleteCourse(
+                    this.props.course)}/>
               </span>
             </td>
           }
@@ -94,7 +96,8 @@ class CourseRowComponentStateful extends React.Component {
             this.state.input &&
             <td>
               <span>
-                <button onClick={(event) => this.saveCourse()}>Save</button>
+                <i className="fas fa-save"
+                   onClick={(event) => this.saveCourse()}/>
               </span>
             </td>
           }
