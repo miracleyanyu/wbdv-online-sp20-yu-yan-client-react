@@ -4,12 +4,13 @@ import ModuleListComponent from "./ModuleListComponent";
 import TopicPillsComponent from "./TopicPillsComponent";
 
 const CourseEditorComponent = ({course}) =>
-  <div>
+  <body style={{height: '100000px'}}>
     <CourseEditorNavComponent
       course={course}/>
     <div className="container-fluid">
       <div className="row">
-        <nav className="col-md-3 d-none d-md-block bg-dark sidebar">
+        <nav className="col-md-3 d-none d-md-block bg-dark sidebar"
+             style={{height: '100000px'}}>
           <div className="sidebar-sticky">
             <ul className="nav flex-column">
               <div className="container">
@@ -131,6 +132,6 @@ const CourseEditorComponent = ({course}) =>
         </div>
       </div>
     </div>
-  </div>;
+  </body>;
 
 export default CourseEditorComponent;
