@@ -11,7 +11,7 @@ class LessonTabsComponent extends React.Component {
     return (
         this.state.tabs.map(tab =>
           <li className="nav-item">
-            <a className="nav-link bg-secondary text-white-50 font-weight-bold wbdv-page-tab"
+            <a className="nav-link bg-dark text-white-50 font-weight-bold wbdv-page-tab"
                href="#">
               {
                 tab

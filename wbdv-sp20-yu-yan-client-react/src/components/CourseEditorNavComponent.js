@@ -3,7 +3,7 @@ import LessonTabsComponent from "./LessonTabsComponent";
 
 const CourseEditorNavComponent = ({course}) =>
     <div>
-      <nav className="navbar navbar-dark bg-dark">
+      <nav className="navbar navbar-dark bg-secondary">
         <label className="text-white h4 text-left offset-1">
           {
             course.title
