@@ -1,6 +1,6 @@
 # wbdv-online-sp20-yu-yan-client-react
 
-*You can add courses by clicking the add course button on the top.
+* You can add courses by clicking the add course button on the top.
 * Click the row, edit and delete button will show up.
 * Click the edit button, the input field will show up, then you can change the course name and save the changes.
 * Click the grid button, it will change to grid layout.
