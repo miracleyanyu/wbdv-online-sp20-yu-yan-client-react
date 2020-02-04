@@ -3,10 +3,11 @@ import CourseEditorNavComponent from "./CourseEditorNavComponent";
 import ModuleListComponent from "./ModuleListComponent";
 import TopicPillsComponent from "./TopicPillsComponent";
 
-const CourseEditorComponent = ({course}) =>
+const CourseEditorComponent = ({course, closeCourseEditor}) =>
   <body style={{height: '100000px'}}>
     <CourseEditorNavComponent
-      course={course}/>
+      course={course}
+      closeCourseEditor={closeCourseEditor}/>
     <div className="container-fluid">
       <div className="row">
         <nav className="col-md-3 d-none d-md-block bg-dark sidebar"

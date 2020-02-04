@@ -45,10 +45,11 @@ class CourseGridCardComponentStateful extends React.Component {
            alt="..."/>
       {
         !this.state.input &&
-        <div className="font-weight-bold"
-             style={{margin: '8px', padding: '10px'}}>
+        <a className="font-weight-bold"
+           style={{margin: '8px', padding: '10px'}}
+           onClick={() => this.props.activateCourseEditor(this.props.course)}>
           {this.props.course.title}
-        </div>
+        </a>
       }
       {
         this.state.input &&

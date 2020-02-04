@@ -84,6 +84,12 @@ class CourseManagerContainer extends React.Component {
     })
   };
 
+  closeCourseEditor = () => {
+    this.setState({
+      activateEditor: false
+    })
+  };
+
   render() {
     return (
       <div>
@@ -139,7 +145,8 @@ class CourseManagerContainer extends React.Component {
           this.state.activateEditor &&
               <div>
                 <CourseEditorComponent
-                  course={this.state.whichCourse}/>
+                  course={this.state.whichCourse}
+                  closeCourseEditor={this.closeCourseEditor}/>
               </div>
         }
       </div>
