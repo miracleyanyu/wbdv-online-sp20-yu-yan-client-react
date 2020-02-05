@@ -44,7 +44,7 @@ class CourseRowComponentStateful extends React.Component {
           <th scope="row"
               style={{width: '15%'}}
               className="text-right">
-            <i className="far fa-file-alt col-md-auto text-primary wbdv-row wbdv-icon"/>
+            <i className="far fa-file-alt col-md-auto text-primary"/>
           </th>
           {
             !this.state.input &&

@@ -59,6 +59,13 @@ class CourseGridCardComponentStateful extends React.Component {
                  onChange={(e) => this.props.editCourse(this.props.course, e.target.value)}/>
         </div>
       }
+      <div className="text-left">
+        <i className="far fa-file-alt col-md-auto text-primary text"/>
+        <span className="font-weight-bold"
+              style={{color: '#929292', fontSize: '14px'}}>
+          Modified 8:09 AM
+        </span>
+      </div>
       {
         !this.state.input &&
         <div className="dropdown text-right">
