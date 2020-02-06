@@ -71,7 +71,9 @@ class CourseRowComponentStateful extends React.Component {
           </td>
           <td className="text-center  d-none d-lg-table-cell"
               style={{width: '15%'}}>
-            6:45 PM
+            {
+              this.props.course.date
+            }
           </td>
           <td style={{width: '10%'}}/>
           <td style={{width: '10%'}}/>

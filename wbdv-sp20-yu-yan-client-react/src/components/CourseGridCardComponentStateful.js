@@ -63,7 +63,9 @@ class CourseGridCardComponentStateful extends React.Component {
         <i className="far fa-file-alt col-md-auto text-primary text"/>
         <span className="font-weight-bold"
               style={{color: '#929292', fontSize: '14px'}}>
-          Modified 8:09 AM
+          Modified {
+                this.props.course.date
+        }
         </span>
       </div>
       {

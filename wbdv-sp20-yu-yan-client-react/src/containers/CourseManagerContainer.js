@@ -47,7 +47,8 @@ class CourseManagerContainer extends React.Component {
 
   addCourse = () => {
     courseService.createCourse({
-      title: this.state.newCourseTitle
+      title: this.state.newCourseTitle,
+      date: (new Date()).toLocaleString()
     }).then(actualCourse => {
       return courseService.findAllCourses()
     }).then(courses => {
@@ -59,7 +60,8 @@ class CourseManagerContainer extends React.Component {
 
   editCourse = (editCourse, value) => {
     courseService.editCourse(editCourse._id, {
-      title: value
+      title: value,
+      date: (new Date()).toLocaleString()
     })
       .then(status => {
         return courseService.findAllCourses()
