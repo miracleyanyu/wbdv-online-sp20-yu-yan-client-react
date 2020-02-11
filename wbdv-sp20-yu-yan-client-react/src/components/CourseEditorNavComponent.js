@@ -4,8 +4,17 @@ import LessonTabsComponent from "./LessonTabsComponent";
 class CourseEditorNavComponent extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
+    // this.props.findCourseById(this.props.courseId)
+    //   .then(course =>
+    //     this.setState({
+    //       course: course
+    //     }))
   };
+
+  // state = {
+  //   course: null
+  // };
 
   render() {
     return (

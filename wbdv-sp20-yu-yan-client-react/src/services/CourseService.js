@@ -16,6 +16,11 @@ class CourseService {
             .then(response => response.json())
   };
 
+  findCourseById = (courseId) => {
+    return fetch(`https://wbdv-generic-server.herokuapp.com/api/yuyan/courses/${courseId}`)
+    .then(response => response.json())
+  };
+
   deleteCourse = (courseId) => {
     return fetch(`https://wbdv-generic-server.herokuapp.com/api/yuyan/courses/${courseId}`, {
       method: 'DELETE'

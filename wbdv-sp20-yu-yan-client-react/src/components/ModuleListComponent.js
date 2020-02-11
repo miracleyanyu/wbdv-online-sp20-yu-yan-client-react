@@ -1,35 +1,57 @@
 import React from "react";
+import ModuleListItem from "./ModuleListItem";
 
 class ModuleListComponent extends React.Component {
 
-  state = {
-    active: false,
-    modules: ['Module 1 - JQuery', 'Module 2 - React', 'Module 3 - Redux',
-           'Module 4 - Native', 'Module 5 - Anguler', 'Module 6 - Node']
+  constructor(props) {
+    super(props)
   };
+
+  state = {
+    activeModuleId: this.props.moduleId,
+    editingModuleId: ''
+  };
+
+  saveModule = () => {
+    this.setState(prevState => ({
+      activateModule: false
+    }))
+  };
+
+  componentDidMount() {
+    this.props.findModulesForCourse(this.props.courseId)
+  }
 
   render() {
     return (
-        this.state.modules.map(module =>
-            <li className="nav-item"
-                style={{margin: '10px', padding: '10px'}}>
-              <button type="button"
-                      className="btn btn-secondary btn-lg col-md-12">
-                <div className="container">
-                  <div className="row">
-                    <i className="offset-1 col col-8 align-middle">
-                      {
-                        module
-                      }
-                    </i>
-                    <div className="col">
-                      <i className="col-md-auto fas fa-times"/>
-                    </div>
-                  </div>
-                </div>
-              </button>
-            </li>
-        )
+        <div className="text-center">
+          {
+            this.props.modules && this.props.modules.map(module =>
+                <ModuleListItem
+                    module={module}
+                    courseId={this.props.courseId}
+                    edit={() => {
+                      const moduleId = module._id;
+                      // this.props.history.push(`/course-editor/${this.props.courseId}/module/${moduleId}`);
+                      this.setState({
+                        editingModuleId: module._id
+                      })
+                    }}
+                    save={() => this.setState({
+                      editingModuleId: ''
+                    })}
+                    deleteModule={this.props.deleteModule}
+                    updateModule={this.props.updateModule}
+                    editing={module._id === this.state.editingModuleId}
+                    active={module._id === this.state.activeModuleId}/>
+            )
+          }
+          <i className="fas fa-plus fa-2x"
+             style={{color: "#ffffff", margin: "10px"}}
+             onClick={() => this.props.createModule(this.props.courseId, {
+               'title': 'New Module'
+             })}/>
+        </div>
     )
   }
 }

@@ -11,9 +11,21 @@ const courseService = new CourseService();
 
 class CourseManagerContainer extends React.Component {
 
+  constructor(props) {
+    super(props);
+    const url = window.location.pathname;
+    const id = url.substring(url.lastIndexOf('/') + 1);
+    courseService.findCourseById(id)
+    .then(course =>
+        this.setState({
+          whichCourse: course
+        })
+    );
+  }
+
   state = {
     layout: 'table',
-    whichCourse: null,
+    whichCourse: {},
     newCourseTitle: 'New Course',
     courses: []
   };
@@ -21,11 +33,10 @@ class CourseManagerContainer extends React.Component {
   componentDidMount() {
     courseService.findAllCourses()
       .then(courses => {
-        console.log(courses);
         this.setState({
           courses: courses
         })
-      })
+      });
   }
 
   toggle = () => {
@@ -74,6 +85,16 @@ class CourseManagerContainer extends React.Component {
       })
   };
 
+  findCourseById = (courseId) => {
+    courseService.findCourseById(courseId)
+    .then(course =>
+        this.setState({
+          whichCourse: course
+        })
+    );
+    return this.state.whichCourse;
+  };
+
   updateFormState = (event) => {
     this.setState({
       newCourseTitle: event.target.value
@@ -105,10 +126,24 @@ class CourseManagerContainer extends React.Component {
                  }/>
           <Route path={"/course-editor/:courseId"}
                  exact={true}
-                 render={() =>
+                 render={(props) =>
                      <CourseEditorComponent
-                         course={this.state.whichCourse}/>
+                         {...props}
+                         courseId={props.match.params.courseId}
+                         findCourseById={courseService.findCourseById}
+                         course={this.findCourseById()}/>
                  }/>
+          {/*<Route*/}
+          {/*    path="/course-editor/:courseId/module/:moduleId"*/}
+          {/*    exact={true}*/}
+          {/*    render={(props) =>*/}
+          {/*        <CourseEditorComponent*/}
+          {/*            {...props}*/}
+          {/*            moduleId={props.match.params.moduleId}*/}
+          {/*            courseId={props.match.params.courseId}*/}
+          {/*            findCourseById={courseService.findCourseById}*/}
+          {/*            hideEditor={this.hideEditor}/>*/}
+          {/*    }/>*/}
         </Router>
     )
   }
