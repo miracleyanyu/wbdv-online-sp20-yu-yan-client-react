@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 class CourseManagerNavComponentStateful extends React.Component {
 
@@ -35,10 +36,10 @@ class CourseManagerNavComponentStateful extends React.Component {
                       <th style={{width: '10%'}}
                           className="text-center"
                           scope="col">
-                        <a href="#"
+                        <Link to={`/course-list/grid`}
                            onClick={() => this.props.toggle()}>
                           <i className="fas fa-grip-horizontal col col-1"/>
-                        </a>
+                        </Link>
                       </th>
                       <th style={{width: '10%'}}
                           className="text-center"
@@ -81,10 +82,10 @@ class CourseManagerNavComponentStateful extends React.Component {
                       <th style={{width: '10%'}}
                           className="text-center"
                           scope="col">
-                        <a href="#"
+                        <Link to={`/course-list/table`}
                            onClick={() => this.props.toggle()}>
                           <i className="fas fa-list col col-1"/>
-                        </a>
+                        </Link>
                       </th>
                       <th style={{width: '10%'}}
                           className="text-center"

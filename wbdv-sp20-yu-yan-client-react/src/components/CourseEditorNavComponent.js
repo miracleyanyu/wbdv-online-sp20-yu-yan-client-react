@@ -23,7 +23,7 @@ class CourseEditorNavComponent extends React.Component {
              className="col-md-auto">
             <i className="fas fa-times fa-2x"
                style={{color: '#000000'}}
-               onClick={() => this.props.closeCourseEditor()}/>
+               onClick={() => this.props.closeCourseEditor}/>
           </a>
         </nav>
       </div>

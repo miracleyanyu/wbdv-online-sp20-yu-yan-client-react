@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 class CourseRowComponentStateful extends React.Component {
 
@@ -49,13 +50,13 @@ class CourseRowComponentStateful extends React.Component {
           {
             !this.state.input &&
             <td style={{width: '25%'}}>
-              <a href="#"
+              <Link to={`/course-editor/${this.props.course._id}`}
                  className="font-weight-bold"
                  onClick={() => this.props.activateCourseEditor(this.props.course)}>
                 {
                   this.props.course.title
                 }
-              </a>
+              </Link>
             </td>
           }
           {
