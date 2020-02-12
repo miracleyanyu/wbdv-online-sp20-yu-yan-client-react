@@ -12,12 +12,6 @@ class ModuleListComponent extends React.Component {
     editingModuleId: ''
   };
 
-  saveModule = () => {
-    this.setState(prevState => ({
-      activateModule: false
-    }))
-  };
-
   componentDidMount() {
     this.props.findModulesForCourse(this.props.courseId)
   }
@@ -30,11 +24,23 @@ class ModuleListComponent extends React.Component {
                 <ModuleListItem
                     module={module}
                     courseId={this.props.courseId}
+                    refresh={() => {
+                      const moduleId = module._id;
+                      this.props.history.push(`/course-editor/${this.props.courseId}/module/${moduleId}`);
+                      window.location.reload();
+                    }}
                     edit={() => {
                       const moduleId = module._id;
-                      // this.props.history.push(`/course-editor/${this.props.courseId}/module/${moduleId}`);
+                      this.props.history.push(`/course-editor/${this.props.courseId}/module/${moduleId}`);
                       this.setState({
                         editingModuleId: module._id
+                      })
+                    }}
+                    select={() => {
+                      const moduleId = module._id
+                      this.props.history.push(`/course-editor/${this.props.courseId}/module/${moduleId}`);
+                      this.setState({
+                        activeModuleId: module._id
                       })
                     }}
                     save={() => this.setState({

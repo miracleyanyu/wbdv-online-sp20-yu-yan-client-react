@@ -1,21 +1,18 @@
 import React from "react";
-import LessonTabsComponent from "./LessonTabsComponent";
 import {Link} from "react-router-dom"
+import LessonTabsContainer from "../../containers/LessonTabsContainer";
 
 class CourseEditorNavComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.props.findCourseById(this.props.courseId)
-    //   .then(course =>
-    //     this.setState({
-    //       course: course
-    //     }))
+    const url = window.location.pathname;
+    this.state.moduleId = url.substring(url.lastIndexOf('/') + 1);
   };
 
-  // state = {
-  //   course: null
-  // };
+  state = {
+    moduleId: null
+  };
 
   render() {
     return (
@@ -26,9 +23,10 @@ class CourseEditorNavComponent extends React.Component {
               this.props.course.title
             }
           </label>
-          <ul className="nav nav-pills nav-fill col-md-8 text-right">
-            <LessonTabsComponent/>
-          </ul>
+          <LessonTabsContainer
+              courseId={this.props.courseId}
+              moduleId={this.state.moduleId}
+              history={this.props.history}/>
           <Link to="/course-list"
              className="col-md-auto">
             <i className="fas fa-times fa-2x"

@@ -1,11 +1,11 @@
 import React from "react";
 import CourseService from "../services/CourseService"
-import CourseTableComponent from "../components/CourseTableComponent"
-import CourseManagerNavComponent from "../components/CourseManagerNavComponent"
-import CourseGridComponent from "../components/CourseGridComponent";
-import CourseEditorComponent from "../components/CourseEditorComponent";
+import CourseTableComponent from "../components/CourseList/CourseTableComponent"
+import CourseManagerNavComponent from "../components/CourseList/CourseManagerNavComponent"
+import CourseGridComponent from "../components/CourseList/CourseGridComponent";
+import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom"
-import CourseListComponent from "../components/CourseListComponent";
+import CourseListComponent from "../components/CourseList/CourseListComponent";
 
 const courseService = new CourseService();
 
@@ -133,17 +133,28 @@ class CourseManagerContainer extends React.Component {
                          findCourseById={courseService.findCourseById}
                          course={this.findCourseById()}/>
                  }/>
-          {/*<Route*/}
-          {/*    path="/course-editor/:courseId/module/:moduleId"*/}
-          {/*    exact={true}*/}
-          {/*    render={(props) =>*/}
-          {/*        <CourseEditorComponent*/}
-          {/*            {...props}*/}
-          {/*            moduleId={props.match.params.moduleId}*/}
-          {/*            courseId={props.match.params.courseId}*/}
-          {/*            findCourseById={courseService.findCourseById}*/}
-          {/*            hideEditor={this.hideEditor}/>*/}
-          {/*    }/>*/}
+          <Route path="/course-editor/:courseId/module/:moduleId"
+                 exact={true}
+                 render={(props) =>
+                     <CourseEditorComponent
+                         {...props}
+                         course={this.findCourseById(props.match.params.courseId)}
+                         moduleId={props.match.params.moduleId}
+                         courseId={props.match.params.courseId}
+                         findCourseById={courseService.findCourseById}
+                         hideEditor={this.hideEditor}/>
+                 }/>
+          <Route
+              path="/course-editor/:courseId/module/:moduleId/lesson/:lessonId"
+              exact={true}
+              render={(props) =>
+                  <CourseEditorComponent
+                      {...props}
+                      lessonId={props.match.params.lessonId}
+                      moduleId={props.match.params.moduleId}
+                      courseId={props.match.params.courseId}
+                      hideEditor={this.hideEditor}/>
+              }/>
         </Router>
     )
   }

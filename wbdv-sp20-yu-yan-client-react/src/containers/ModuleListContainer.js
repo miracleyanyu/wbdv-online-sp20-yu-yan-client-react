@@ -3,10 +3,9 @@ import {connect} from "react-redux";
 import service from "../services/ModuleService";
 import {
   findModulesForCourse,
-  createModule,
-  editModule
+  createModule
 } from "../actions/ModuleActions";
-import ModuleListComponent from "../components/ModuleListComponent";
+import ModuleListComponent from "../components/Module/ModuleListComponent";
 
 const stateToPropertyMapper = (state) => ({
   modules: state.modules.modules
@@ -30,7 +29,7 @@ const dispatchToPropertyMapper = (dispatch) => ({
       })
       .then(modules =>
           dispatch(findModulesForCourse(modules)))
-  },
+  }
 });
 
 const ModuleListContainer = connect(

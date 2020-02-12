@@ -1,7 +1,7 @@
 import CourseManagerNavComponent from "./CourseManagerNavComponent";
 import CourseTableComponent from "./CourseTableComponent";
 import CourseGridComponent from "./CourseGridComponent";
-import CourseEditorComponent from "./CourseEditorComponent";
+import CourseEditorComponent from "../CourseEditor/CourseEditorComponent";
 import React from "react";
 
 const CourseListComponent =

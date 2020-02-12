@@ -1,10 +1,10 @@
 import React from "react";
 import CourseEditorNavComponent from "./CourseEditorNavComponent";
-import TopicPillsComponent from "./TopicPillsComponent";
-import ModuleListContainer from "../containers/ModuleListContainer";
+import TopicPillsComponent from "../TopicPillsComponent";
+import ModuleListContainer from "../../containers/ModuleListContainer";
 import {combineReducers, createStore} from "redux";
-import modules from '../reducers/Modules'
-import lessons from '../reducers/Lessons'
+import modules from '../../reducers/ModuleReducer'
+import lessons from '../../reducers/LessonReducer'
 import {Provider} from "react-redux"
 
 const reducers = combineReducers({
@@ -13,12 +13,14 @@ const reducers = combineReducers({
 
 const store = createStore(reducers);
 
-const CourseEditorComponent = ({course, courseId, closeCourseEditor, findCourseById, history}) =>
+const CourseEditorComponent = ({course, courseId, moduleId, closeCourseEditor, findCourseById, history}) =>
     <Provider store={store}>
       <body style={{height: '100000px'}}>
         <CourseEditorNavComponent
           course={course}
+          moduleId={moduleId}
           courseId={courseId}
+          history={history}
           closeCourseEditor={closeCourseEditor}
           findCourseById={findCourseById}/>
           <div className="container-fluid">

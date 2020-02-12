@@ -1,21 +1,23 @@
 import React from "react";
 import {connect} from "react-redux"
-import {MODULES_API_URL} from "../common/constants";
+import {MODULES_API_URL} from "../../common/constants";
 
-const ModuleListItem = ({module, courseId, edit, save, editing, deleteModule, updateModule, active}) =>
+const ModuleListItem = ({module, courseId, edit, save, refresh, select, editing, deleteModule, updateModule, active}) =>
       <li className={`list-item ${active ? 'active':''}`}
           style={{margin: '10px', padding: '10px'}}>
         <button type="button"
-                className="btn btn-secondary btn-lg col-md-12">
+                className="btn btn-secondary btn-lg col-md-12"
+                onClick={select}>
           <div className="container">
             <div className="row">
               {
                 !editing &&
-                <i className="offset-1 col col-8 align-middle">
+                <a className="offset-1 col col-8 align-middle"
+                   onClick={refresh}>
                 {
                   module.title
                 }
-                </i>
+                </a>
               }
               {
                 editing &&
