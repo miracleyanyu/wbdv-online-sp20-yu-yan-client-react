@@ -7,7 +7,12 @@ class CourseEditorNavComponent extends React.Component {
   constructor(props) {
     super(props);
     const url = window.location.pathname;
-    this.state.moduleId = url.substring(url.lastIndexOf('/') + 1);
+    if (url.split('/').length === 5) {
+      this.state.moduleId = url.substring(url.lastIndexOf('/') + 1);
+    }
+    else {
+      this.state.moduleId = url.split('/')[4];
+    }
   };
 
   state = {

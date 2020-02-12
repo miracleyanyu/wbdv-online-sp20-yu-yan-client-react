@@ -1,5 +1,5 @@
 import React from "react";
-import LessonTabItem from "./LessonTabItem";
+import LessonTabItem from "./LessonTabsItem";
 
 class LessonTabsComponent extends React.Component {
 
@@ -16,6 +16,12 @@ class LessonTabsComponent extends React.Component {
     this.props.findLessonsForCourse(this.props.moduleId)
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if(this.props.moduleId !== prevProps.moduleId) {
+      this.props.findLessonsForCourse(this.props.moduleId)
+    }
+  }
+
   render() {
     return (
         <ul className="nav nav-pills nav-fill col-md-8 text-left align-middle">
@@ -24,9 +30,14 @@ class LessonTabsComponent extends React.Component {
                 <LessonTabItem
                     lesson={lesson}
                     moduleId={this.props.moduleId}
+                    refresh={() => {
+                      const lessonId = lesson._id;
+                      this.props.history.push(`/course-editor/${this.props.courseId}/module/${this.props.moduleId}/lesson/${lessonId}`);
+                      window.location.reload();
+                    }}
                     edit={() => {
                       const lessonId = lesson._id;
-                      this.props.history.push(`/course-editor/${this.props.courseId}/module/${this.props.moduleId}`);
+                      this.props.history.push(`/course-editor/${this.props.courseId}/module/${this.props.moduleId}/lesson/${lessonId}`);
                       this.setState({
                         editingLessonId: lesson._id
                       })
@@ -41,7 +52,7 @@ class LessonTabsComponent extends React.Component {
             )
           }
           {
-            this.props.lessons &&
+            window.location.pathname.indexOf('module') !== -1 &&
             <i className="fas fa-plus fa-2x col-md-auto"
                style={{color: "#ffffff", margin: "20px"}}
                onClick={() => this.props.createLesson(this.props.moduleId, {

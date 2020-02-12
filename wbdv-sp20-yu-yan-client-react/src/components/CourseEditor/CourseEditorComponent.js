@@ -1,19 +1,20 @@
 import React from "react";
 import CourseEditorNavComponent from "./CourseEditorNavComponent";
-import TopicPillsComponent from "../TopicPillsComponent";
+import TopicPillsContainer from "../../containers/TopicPillsContainer";
 import ModuleListContainer from "../../containers/ModuleListContainer";
 import {combineReducers, createStore} from "redux";
 import modules from '../../reducers/ModuleReducer'
 import lessons from '../../reducers/LessonReducer'
+import topics from '../../reducers/TopicReducer'
 import {Provider} from "react-redux"
 
 const reducers = combineReducers({
-  modules, lessons
+  modules, lessons, topics
 });
 
 const store = createStore(reducers);
 
-const CourseEditorComponent = ({course, courseId, moduleId, closeCourseEditor, findCourseById, history}) =>
+const CourseEditorComponent = ({course, courseId, moduleId, lessonId, closeCourseEditor, findCourseById, history}) =>
     <Provider store={store}>
       <body style={{height: '100000px'}}>
         <CourseEditorNavComponent
@@ -46,9 +47,10 @@ const CourseEditorComponent = ({course, courseId, moduleId, closeCourseEditor, f
                       <i className="col col-md-1"/>
                       <i className="col col-md-1"/>
                       <i className="col col-md-1"/>
-                      <TopicPillsComponent/>
-                      <i className="far fa-plus-square fa-2x align-middle wbdv-topic-add-btn"
-                         style={{margin: '10px', padding: '10px'}}/>
+                      <TopicPillsContainer
+                          lessonId={lessonId}
+                          courseId={courseId}
+                          history={history}/>
                       <div className="row">
                         <div className="col">
                           <form className="form-inline">

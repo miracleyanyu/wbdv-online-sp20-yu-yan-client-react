@@ -1,37 +1,34 @@
 import React from "react";
 import {connect} from "react-redux"
-import {LESSONS_API_URL} from "../../common/constants";
+import {TOPICS_API_URL} from "../../common/constants";
 
-const LessonTabsItem = ({lesson, moduleId, edit, save, refresh, editing, deleteLesson, updateLesson, active}) =>
-    <li className={`nav-item col-3 ${active ? 'active':''}`}
+const TopicPillsItem = ({topic, lessonId, edit, save, refresh, editing, deleteTopic, updateTopic, active}) =>
+    <li className={`list-item col-3 ${active ? 'active':''}`}
         style={{margin: '10px', padding: '10px'}}>
       <a className="nav-link bg-secondary text-white-50 font-weight-bold">
         <div className="container">
           <div className="col-8">
             {
               !editing &&
-              <a className=""
-                 onClick={refresh}>
+              <a className="">
                 {
-                  lesson.title
+                  topic.title
                 }
               </a>
             }
             {
               editing &&
               <i className="">
-                <input value={lesson.title}
-                       onChange={(e) => updateLesson(moduleId, lesson._id, e.target.value)}/>
+                <input value={topic.title}
+                       onChange={(e) => updateTopic(lessonId, topic._id, e.target.value)}/>
               </i>
             }
           </div>
-          <div className="col-4">
+          <div className="col-2">
             {
               !editing &&
-              <div className="col">
-                <i className="fas fa-pencil-alt col-md-auto"
-                   onClick={edit}/>
-              </div>
+              <i className="fas fa-pencil-alt col-md-auto"
+                 onClick={edit}/>
             }
             {
               editing &&
@@ -39,26 +36,26 @@ const LessonTabsItem = ({lesson, moduleId, edit, save, refresh, editing, deleteL
                   <i className="fas fa-save col-md-1"
                      onClick={save}/>
                   <i className="far fa-trash-alt col-md-1"
-                     onClick={() => deleteLesson(lesson._id)}/>
-              </span>
+                     onClick={() => deleteTopic(topic._id)}/>
+                </span>
             }
           </div>
-          </div>
+        </div>
       </a>
     </li>;
 
 const stateToPropertyMapper = (state) => ({
-  lessons: state.lessons.lessons
+  topics: state.topics.topics
 });
 
 const dispatchToPropertyMapper = (dispatch) => ({
-  deleteLesson: (lessonId) => {
-    fetch(`${LESSONS_API_URL}/${lessonId}`, {
+  deleteTopic: (topicId) => {
+    fetch(`${TOPICS_API_URL}/${topicId}`, {
       method: 'DELETE'
     }).then(response => response.json())
     .then(status => dispatch({
-      type: 'DELETE_LESSON',
-      lessonId: lessonId
+      type: 'DELETE_TOPIC',
+      topicId: topicId
     }))
   }
 });
@@ -66,4 +63,4 @@ const dispatchToPropertyMapper = (dispatch) => ({
 export default connect(
     stateToPropertyMapper,
     dispatchToPropertyMapper
-)(LessonTabsItem);
+)(TopicPillsItem);
