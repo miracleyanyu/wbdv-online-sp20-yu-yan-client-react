@@ -28,6 +28,9 @@ class ModuleListComponent extends React.Component {
                       const moduleId = module._id;
                       this.props.history.push(`/course-editor/${this.props.courseId}/module/${moduleId}`);
                       window.location.reload();
+                      this.setState({
+                        activeModuleId: module._id
+                      })
                     }}
                     edit={() => {
                       const moduleId = module._id;
@@ -49,7 +52,7 @@ class ModuleListComponent extends React.Component {
                     deleteModule={this.props.deleteModule}
                     updateModule={this.props.updateModule}
                     editing={module._id === this.state.editingModuleId}
-                    active={module._id === this.state.activeModuleId}/>
+                    active={module._id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/>
             )
           }
           <i className="fas fa-plus fa-2x"

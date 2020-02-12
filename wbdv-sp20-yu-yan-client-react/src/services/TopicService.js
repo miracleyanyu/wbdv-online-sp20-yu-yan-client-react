@@ -1,11 +1,11 @@
 import {LESSONS_TOPICS_API_URL} from "../common/constants";
 
-export const findTopicForCourse = (lessonId) =>
-    fetch(`https://wbdv-generic-server.herokuapp.com/api/yuyan/lessons/${lessonId}/topics`)
+export const findTopicsForLesson = (lessonId) =>
+    fetch(LESSONS_TOPICS_API_URL(lessonId))
     .then(response => response.json());
 
-export const createTopic = (topicId, topic) =>
-    fetch(LESSONS_TOPICS_API_URL(topicId), {
+export const createTopic = (lessonId, topic) =>
+    fetch(LESSONS_TOPICS_API_URL(lessonId), {
       method: 'POST',
       body: JSON.stringify(topic),
       headers: {
@@ -14,13 +14,13 @@ export const createTopic = (topicId, topic) =>
     }).then(response => response.json());
 
 export const deleteTopic = (topicId) =>
-    fetch(`https://wbdv-generic-server.herokuapp.com/api/yuyan/topics/${topicId}`, {
+    fetch(`https://wbdv-generic-server.herokuapp.com/api/yuyan/lessons/${topicId}`, {
       method: 'DELETE'
     })
     .then(response => response.json());
 
 export const updateTopic = (topicId, topic) =>
-    fetch(`https://wbdv-generic-server.herokuapp.com/api/yuyan/topics/${topicId}`, {
+    fetch(`https://wbdv-generic-server.herokuapp.com/api/yuyan/lessons/${topicId}`, {
       method: 'PUT',
       body: JSON.stringify(topic),
       headers: {
@@ -30,5 +30,5 @@ export const updateTopic = (topicId, topic) =>
     .then(response => response.json());
 
 export default {
-  findTopicForCourse, createTopic, deleteTopic, updateTopic
+  findTopicsForLesson, createTopic, deleteTopic, updateTopic
 }

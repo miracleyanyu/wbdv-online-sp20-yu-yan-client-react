@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 
 class CourseGridCardComponentStateful extends React.Component {
 
@@ -45,11 +46,12 @@ class CourseGridCardComponentStateful extends React.Component {
            alt="..."/>
       {
         !this.state.input &&
-        <a className="font-weight-bold"
-           style={{margin: '8px', padding: '10px'}}
-           onClick={() => this.props.activateCourseEditor(this.props.course)}>
+        <Link to={`/course-editor/${this.props.course._id}`}
+              className="font-weight-bold"
+              style={{margin: '8px', padding: '10px'}}
+              onClick={() => this.props.activateCourseEditor(this.props.course)}>
           {this.props.course.title}
-        </a>
+        </Link>
       }
       {
         this.state.input &&

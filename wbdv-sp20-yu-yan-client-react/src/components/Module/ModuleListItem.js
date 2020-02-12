@@ -3,10 +3,10 @@ import {connect} from "react-redux"
 import {MODULES_API_URL} from "../../common/constants";
 
 const ModuleListItem = ({module, courseId, edit, save, refresh, select, editing, deleteModule, updateModule, active}) =>
-      <li className={`list-item ${active ? 'active':''}`}
+      <li className="list-item"
           style={{margin: '10px', padding: '10px'}}>
         <button type="button"
-                className="btn btn-secondary btn-lg col-md-12"
+                className={`btn btn-secondary btn-lg col-md-12 ${active? 'active':''}`}
                 onClick={select}>
           <div className="container">
             <div className="row">

@@ -3,9 +3,9 @@ import {connect} from "react-redux"
 import {LESSONS_API_URL} from "../../common/constants";
 
 const LessonTabsItem = ({lesson, moduleId, edit, save, refresh, editing, deleteLesson, updateLesson, active}) =>
-    <li className={`nav-item col-3 ${active ? 'active':''}`}
+    <li className={`nav-item col-3`}
         style={{margin: '10px', padding: '10px'}}>
-      <a className="nav-link bg-secondary text-white-50 font-weight-bold">
+      <a className={`nav-link bg-secondary text-white-50 font-weight-bold ${active ? 'bg-dark':''}`}>
         <div className="container">
           <div className="col-8">
             {

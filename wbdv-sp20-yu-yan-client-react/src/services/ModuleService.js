@@ -1,7 +1,7 @@
 import {COURSES_MODULES_API_URL} from "../common/constants";
 
-export const findModuleForCourse = (courseId) =>
-    fetch(`https://wbdv-generic-server.herokuapp.com/api/yuyan/courses/${courseId}/modules`)
+export const findModulesForCourse = (courseId) =>
+    fetch(COURSES_MODULES_API_URL(courseId))
       .then(response => response.json());
 
 export const createModule = (courseId, module) =>
@@ -30,5 +30,5 @@ export const updateModule = (moduleId, module) =>
     .then(response => response.json());
 
 export default {
-  findModuleForCourse, createModule, deleteModule, updateModule
+  findModulesForCourse, createModule, deleteModule, updateModule
 }

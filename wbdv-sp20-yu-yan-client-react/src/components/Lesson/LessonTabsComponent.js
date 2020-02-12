@@ -48,7 +48,7 @@ class LessonTabsComponent extends React.Component {
                     deleteLesson={this.props.deleteLesson}
                     updateLesson={this.props.updateLesson}
                     editing={lesson._id === this.state.editingLessonId}
-                    active={lesson._id === this.state.activeLessonId}/>
+                    active={lesson._id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/>
             )
           }
           {
