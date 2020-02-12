@@ -110,6 +110,21 @@ class CourseManagerContainer extends React.Component {
   render() {
     return (
         <Router>
+          <Route path={"/"}
+                 exact={true}
+                 render={() =>
+                     <CourseListComponent
+                         state={this.state}
+                         toggle={this.toggle}
+                         updateFormState={this.updateFormState}
+                         addCourse={this.addCourse}
+                         layout={this.state.layout}
+                         activateCourseEditor={this.activateCourseEditor}
+                         editCourse={this.editCourse}
+                         deleteCourse={this.deleteCourse}
+                         courses={this.state.courses}
+                         whichCourse={this.state.whichCourse}/>
+                 }/>
           <Route path={"/course-list"}
                  render={() =>
                      <CourseListComponent
