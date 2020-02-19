@@ -10,7 +10,8 @@ const TopicPillsItem = ({topic, lessonId, edit, save, refresh, editing, deleteTo
           <div className="col-8">
             {
               !editing &&
-              <a className="">
+              <a className=""
+                 onClick={refresh}>
                 {
                   topic.title
                 }

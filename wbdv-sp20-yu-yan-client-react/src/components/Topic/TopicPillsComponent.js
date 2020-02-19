@@ -30,6 +30,11 @@ class TopicPillsComponent extends React.Component {
                 <TopicPillsItem
                     topic={topic}
                     lessonId={this.props.lessonId}
+                    refresh={() => {
+                      const topicId = topic._id;
+                      this.props.history.push(`/course-editor/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${topicId}`);
+                      window.location.reload();
+                    }}
                     edit={() => {
                       const topicId = topic._id;
                       console.log(topicId);
@@ -44,7 +49,7 @@ class TopicPillsComponent extends React.Component {
                     deleteTopic={this.props.deleteTopic}
                     updateTopic={this.props.updateTopic}
                     editing={topic._id === this.state.editingTopicId}
-                    active={topic._id === this.state.activeTopicId}/>
+                    active={topic._id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/>
             )
           }
           {
