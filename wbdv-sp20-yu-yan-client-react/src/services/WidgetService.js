@@ -4,6 +4,10 @@ export const findWidgetsForTopic = (topicId) =>
     fetch(TOPICS_WIDGETS_API_URL(topicId))
       .then(response => response.json());
 
+export const findWidgetById = (widgetId) =>
+    fetch(`https://cs5610-sp20-yyan-server.herokuapp.com/api/widgets/${widgetId}`)
+    .then(response => response.json());
+
 export const createWidget = (topicId, widget) =>
     fetch(TOPICS_WIDGETS_API_URL(topicId), {
       method: 'POST',

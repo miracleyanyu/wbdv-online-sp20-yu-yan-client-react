@@ -31,6 +31,7 @@ class WidgetListComponent extends React.Component {
             this.props.widgets && this.props.widgets.map(widget =>
               widget.type === 'Heading' &&
               <HeadingWidgetComponent
+                  preview={this.props.preview}
                   widget={widget}
                   topicId={this.props.topicId}
                   edit={() => {
@@ -53,6 +54,7 @@ class WidgetListComponent extends React.Component {
                   active={widget._id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/> ||
               widget.type === 'Paragraph' &&
               <ParagraphWidgetComponent
+                  preview={this.props.preview}
                   widget={widget}
                   topicId={this.props.topicId}
                   edit={() => {
@@ -73,28 +75,6 @@ class WidgetListComponent extends React.Component {
                   updateWidget={this.props.updateWidget}
                   editing={widget._id === this.state.editingWidgetId}
                   active={widget._id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/>
-
-                // <WidgetListItem
-                //     widget={widget}
-                //     topicId={this.props.topicId}
-                //     edit={() => {
-                //       const widgetId = widget._id;
-                //       this.props.history.push(`/course-editor/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}`);
-                //       this.setState({
-                //         editingWidgetId: widget._id
-                //       })
-                //     }}
-                //     save={() => this.setState({
-                //       editingWidgetId: ''
-                //     })}
-                //     changeType={() => {
-                //       const newType = widget.type === 'Heading' ? 'Paragraph' : 'Heading';
-                //       widget.type = newType.toString();
-                //     }}
-                //     deleteWidget={this.props.deleteWidget}
-                //     updateWidget={this.props.updateWidget}
-                //     editing={widget._id === this.state.editingWidgetId}
-                //     active={widget._id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/>
             )
           }
           {
@@ -105,7 +85,8 @@ class WidgetListComponent extends React.Component {
                      style={{color: '#F51B00'}}
                      onClick={() => this.props.createWidget(this.props.topicId, {
                        'name': 'New Widget',
-                       'type': 'Heading'
+                       'type': 'Heading',
+                       'size': 1
                      })}/>
               </a>
             }

@@ -27,7 +27,8 @@ class CourseManagerContainer extends React.Component {
     layout: 'table',
     whichCourse: {},
     newCourseTitle: 'New Course',
-    courses: []
+    courses: [],
+    preView: false
   };
 
   componentDidMount() {
@@ -107,6 +108,12 @@ class CourseManagerContainer extends React.Component {
     })
   };
 
+  togglePreview = () => {
+    this.setState(prevState => ({
+      preView: !prevState.preView
+    }))
+  };
+
   render() {
     return (
         <Router>
@@ -182,7 +189,9 @@ class CourseManagerContainer extends React.Component {
                       moduleId={props.match.params.moduleId}
                       courseId={props.match.params.courseId}
                       topicId={props.match.params.topicId}
-                      hideEditor={this.hideEditor}/>
+                      hideEditor={this.hideEditor}
+                      togglePreview={this.togglePreview}
+                      preview={this.state.preView}/>
               }/>
         </Router>
     )
