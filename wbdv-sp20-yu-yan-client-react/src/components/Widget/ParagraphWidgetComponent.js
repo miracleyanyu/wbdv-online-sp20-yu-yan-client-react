@@ -30,13 +30,22 @@ const ParagraphWidgetComponent = ({widget, topicId, preview, edit, save, refresh
             <i className="offset-7"/>
           }
           <i className="fas fa-arrow-circle-down fa-2x col-md-auto"
-             style={{color: '#FFAA1D'}}/>
+             style={{color: '#FFAA1D'}}
+             onClick={() => updateWidget(topicId, widget.id, {
+               "id": widget.id,
+               "topicId": widget.topicId,
+               "name": widget.name,
+               "type": widget.type,
+               "text": widget.text,
+               "size": widget.size,
+               "order": widget.order + 1
+             })}/>
           <select value={widget.type}
                   onChange={(e) => updateWidget(topicId, widget.id, {
                     "id": widget.id,
                     "topicId": widget.topicId,
                     "name": widget.name,
-                    "type": widget.type,
+                    "type": e.target.value,
                     "text": widget.text,
                     "size": widget.size,
                     "order": widget.order
