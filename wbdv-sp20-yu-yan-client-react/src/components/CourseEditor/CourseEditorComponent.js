@@ -54,26 +54,30 @@ const CourseEditorComponent = ({course, courseId, moduleId, lessonId, topicId, c
                           courseId={courseId}
                           moduleId={moduleId}
                           history={history}/>
-                      <div className="row">
-                        <div className="col">
-                          <form className="form-inline">
-                            <button type="button"
-                                    className="form-control offset-9 col-md-auto btn btn-success col-md-1">Save
-                            </button>
-                            <label className="form-check-label bg-white col-md-auto font-weight-bold">Preview</label>
-                            {
-                              !preview &&
-                              <i className="fas fa-toggle-off fa-2x col-md-auto"
-                                 onClick={() => togglePreview()}/>
-                            }
-                            {
-                              preview &&
-                              <i className="fas fa-toggle-on fa-2x col-md-auto"
-                                 onClick={() => togglePreview()}/>
-                            }
-                          </form>
+                      {
+                        window.location.pathname.indexOf('topic') !== -1 &&
+                        <div className="row">
+                          <div className="col">
+                            <form className="form-inline">
+                              <button type="button"
+                                      className="form-control offset-9 col-md-auto btn btn-success col-md-1">Save
+                              </button>
+                              <label
+                                  className="form-check-label bg-white col-md-auto font-weight-bold">Preview</label>
+                              {
+                                !preview &&
+                                <i className="fas fa-toggle-off fa-2x col-md-auto"
+                                   onClick={() => togglePreview()}/>
+                              }
+                              {
+                                preview &&
+                                <i className="fas fa-toggle-on fa-2x col-md-auto"
+                                   onClick={() => togglePreview()}/>
+                              }
+                            </form>
+                          </div>
                         </div>
-                      </div>
+                      }
                     </div>
                   </div>
                   <label className="row"/>
