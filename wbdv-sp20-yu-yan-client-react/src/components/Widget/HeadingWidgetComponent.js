@@ -132,9 +132,12 @@ const HeadingWidgetComponent = ({widget, topicId, preview, edit, save, refresh, 
         }
         <label className="row"/>
         <label className="row"/>
-        <h3>
-          Preview
-        </h3>
+        {
+          !preview &&
+          <h3>
+            Preview
+          </h3>
+        }
         {
           widget.size === 1 && <h1>{widget.text}</h1> ||
           widget.size === 2 && <h2>{widget.text}</h2> ||
