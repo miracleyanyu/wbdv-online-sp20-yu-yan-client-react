@@ -5,7 +5,7 @@ export const findWidgetsForTopic = (topicId) =>
       .then(response => response.json());
 
 export const findWidgetById = (widgetId) =>
-    fetch(`https://cs5610-sp20-yyan-server.herokuapp.com/api/widgets/${widgetId}`)
+    fetch(`http://localhost:8080/api/widgets/${widgetId}`)
     .then(response => response.json());
 
 export const createWidget = (topicId, widget) =>
@@ -18,13 +18,13 @@ export const createWidget = (topicId, widget) =>
     }).then(response => response.json());
 
 export const deleteWidget = (widgetId) =>
-    fetch(`https://cs5610-sp20-yyan-server.herokuapp.com/api/widgets/${widgetId}`, {
+    fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
       method: 'DELETE'
     })
     .then(response => response.json());
 
 export const updateWidget = (widgetId, widget) =>
-    fetch(`https://cs5610-sp20-yyan-server.herokuapp.com/api/widgets/${widgetId}`, {
+    fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
       method: 'PUT',
       body: JSON.stringify(widget),
       headers: {

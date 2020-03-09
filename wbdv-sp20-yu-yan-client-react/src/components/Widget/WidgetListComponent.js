@@ -2,6 +2,7 @@ import React from "react";
 import WidgetListItem from "./WidgetListItem";
 import HeadingWidgetComponent from "./HeadingWidgetComponent";
 import ParagraphWidgetComponent from "./ParagraphWidgetComponent";
+import ImageWidgetComponent from "./ImageWidgetComponent";
 
 class WidgetListComponent extends React.Component {
 
@@ -28,53 +29,64 @@ class WidgetListComponent extends React.Component {
     return (
         <div className="row">
           {
-            this.props.widgets && this.props.widgets.map(widget =>
+            this.props.widgets && this.props.widgets.sort((a, b) => a.widgetOrder - b.widgetOrder).map(widget =>
               widget.type === 'Heading' &&
               <HeadingWidgetComponent
                   preview={this.props.preview}
                   widget={widget}
                   topicId={this.props.topicId}
                   edit={() => {
-                    const widgetId = widget._id;
+                    const widgetId = widget.id;
                     this.props.history.push(`/course-editor/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}`);
                     this.setState({
-                      editingWidgetId: widget._id
+                      editingWidgetId: widget.id
                     })
                   }}
                   save={() => this.setState({
                     editingWidgetId: ''
                   })}
-                  changeType={() => {
-                    const newType = widget.type === 'Heading' ? 'Paragraph' : 'Heading';
-                    widget.type = newType.toString();
-                  }}
                   deleteWidget={this.props.deleteWidget}
                   updateWidget={this.props.updateWidget}
-                  editing={widget._id === this.state.editingWidgetId}
-                  active={widget._id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/> ||
+                  editing={widget.id === this.state.editingWidgetId}
+                  active={widget.id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/> ||
               widget.type === 'Paragraph' &&
               <ParagraphWidgetComponent
                   preview={this.props.preview}
                   widget={widget}
                   topicId={this.props.topicId}
                   edit={() => {
-                    const widgetId = widget._id;
+                    const widgetId = widget.id;
                     this.props.history.push(`/course-editor/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}`);
                     this.setState({
-                      editingWidgetId: widget._id
+                      editingWidgetId: widget.id
                     })
                   }}
                   save={() => this.setState({
                     editingWidgetId: ''
                   })}
-                  changeType={() => {
-                    const newType = widget.type === 'Heading' ? 'Paragraph' : 'Heading';
-                    widget.type = newType.toString();
-                  }}
                   deleteWidget={this.props.deleteWidget}
                   updateWidget={this.props.updateWidget}
-                  editing={widget._id === this.state.editingWidgetId}
-                  active={widget._id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/>
+                  editing={widget.id === this.state.editingWidgetId}
+                  active={widget.id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/> ||
+                widget.type === 'Image' &&
+                <ImageWidgetComponent
+                    preview={this.props.preview}
+                    widget={widget}
+                    topicId={this.props.topicId}
+                    edit={() => {
+                      const widgetId = widget.id;
+                      this.props.history.push(`/course-editor/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}`);
+                      this.setState({
+                        editingWidgetId: widget.id
+                      })
+                    }}
+                    save={() => this.setState({
+                      editingWidgetId: ''
+                    })}
+                    deleteWidget={this.props.deleteWidget}
+                    updateWidget={this.props.updateWidget}
+                    editing={widget.id === this.state.editingWidgetId}
+                    active={widget.id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/>
             )
           }
           {

@@ -14,13 +14,13 @@ export const createTopic = (lessonId, topic) =>
     }).then(response => response.json());
 
 export const deleteTopic = (topicId) =>
-    fetch(`https://wbdv-generic-server.herokuapp.com/api/yuyan/lessons/${topicId}`, {
+    fetch(`http://localhost:8080/api/lessons/${topicId}`, {
       method: 'DELETE'
     })
     .then(response => response.json());
 
 export const updateTopic = (topicId, topic) =>
-    fetch(`https://wbdv-generic-server.herokuapp.com/api/yuyan/lessons/${topicId}`, {
+    fetch(`http://localhost:8080/api/lessons/${topicId}`, {
       method: 'PUT',
       body: JSON.stringify(topic),
       headers: {

@@ -7,6 +7,7 @@ const widgetReducer = (
     action) => {
   switch(action.type) {
     case CREATE_WIDGET:
+      console.log(state.widgets);
       return {
         widgets: [
           ...state.widgets,

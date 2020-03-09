@@ -21,6 +21,7 @@ const dispatchToPropertyMapper = (dispatch) => ({
       .then(widgets =>
           dispatch(findWidgetsForTopic(widgets))),
   updateWidget: (topicId, widgetId, widget) => {
+    // console.log(widget);
     service.updateWidget(widgetId, widget)
     .then(status => {
       return service.findWidgetsForTopic(topicId)

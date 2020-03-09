@@ -31,16 +31,16 @@ class TopicPillsComponent extends React.Component {
                     topic={topic}
                     lessonId={this.props.lessonId}
                     refresh={() => {
-                      const topicId = topic._id;
+                      const topicId = topic.id;
                       this.props.history.push(`/course-editor/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${topicId}`);
                       window.location.reload();
                     }}
                     edit={() => {
-                      const topicId = topic._id;
+                      const topicId = topic.id;
                       console.log(topicId);
                       this.props.history.push(`/course-editor/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}`);
                       this.setState({
-                        editingTopicId: topic._id
+                        editingTopicId: topic.id
                       })
                     }}
                     save={() => this.setState({
@@ -48,8 +48,8 @@ class TopicPillsComponent extends React.Component {
                     })}
                     deleteTopic={this.props.deleteTopic}
                     updateTopic={this.props.updateTopic}
-                    editing={topic._id === this.state.editingTopicId}
-                    active={topic._id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/>
+                    editing={topic.id === this.state.editingTopicId}
+                    active={topic.id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/>
             )
           }
           {

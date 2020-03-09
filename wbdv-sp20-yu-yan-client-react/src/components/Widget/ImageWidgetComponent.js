@@ -2,18 +2,35 @@ import React from "react";
 import {WIDGETS_API_URL} from "../../common/constants";
 import {connect} from "react-redux";
 
-const ParagraphWidgetComponent = ({widget, topicId, preview, edit, save, refresh, editing, deleteWidget, updateWidget, active}) =>
+const ImageWidgetComponent = ({widget, topicId, preview, edit, save, refresh, editing, deleteWidget, updateWidget, active}) =>
     <div className="container-fluid"
          style={{padding: "10px"}}>
       <div className="col col-10 offset-1 border border-light bg-light">
         {
           !preview &&
-        <form className="form-inline">
-          <h3 className="form-check-label bg-light col-md-auto font-weight-bold">Paragraph
-            Widget</h3>
-          {
-            widget.order !== 0 &&
-            <i className="fas fa-arrow-circle-up offset-7 fa-2x col-md-auto"
+          <form className="form-inline">
+            <h3 className="form-check-label bg-light col-md-auto font-weight-bold">Image
+              Widget</h3>
+            {
+              widget.order !== 0 &&
+              <i className="fas fa-arrow-circle-up offset-7 fa-2x col-md-auto"
+                 style={{color: '#FFAA1D'}}
+                 onClick={() => updateWidget(topicId, widget.id, {
+                   "id": widget.id,
+                   "topicId": widget.topicId,
+                   "name": widget.name,
+                   "type": widget.type,
+                   "text": widget.text,
+                   "size": widget.size,
+                   "widgetOrder": widget.widgetOrder - 1,
+                   "src": widget.src
+                 })}/>
+            }
+            {
+              widget.order === 0 &&
+              <i className="offset-7"/>
+            }
+            <i className="fas fa-arrow-circle-down fa-2x col-md-auto"
                style={{color: '#FFAA1D'}}
                onClick={() => updateWidget(topicId, widget.id, {
                  "id": widget.id,
@@ -22,41 +39,29 @@ const ParagraphWidgetComponent = ({widget, topicId, preview, edit, save, refresh
                  "type": widget.type,
                  "text": widget.text,
                  "size": widget.size,
-                 "widgetOrder": widget.widgetOrder - 1
+                 "widgetOrder": widget.widgetOrder + 1,
+                 "src": widget.src
                })}/>
-          }
-          {
-            widget.order === 0 &&
-            <i className="offset-7"/>
-          }
-          <i className="fas fa-arrow-circle-down fa-2x col-md-auto"
-             style={{color: '#FFAA1D'}}
-             onClick={() => updateWidget(topicId, widget.id, {
-               "id": widget.id,
-               "topicId": widget.topicId,
-               "name": widget.name,
-               "type": widget.type,
-               "text": widget.text,
-               "size": widget.size,
-               "widgetOrder": widget.widgetOrder + 1
-             })}/>
-          <select value={widget.type}
-                  onChange={(e) => updateWidget(topicId, widget.id, {
-                    "id": widget.id,
-                    "topicId": widget.topicId,
-                    "name": widget.name,
-                    "type": e.target.value,
-                    "text": widget.text,
-                    "size": widget.size,
-                    "widgetOrder": widget.widgetOrder
-                  })}>
-            <option>Heading</option>
-            <option>Paragraph</option>
-          </select>
-          <i className="fas fa-window-close fa-2x col-md-auto"
-             style={{color: '#FF0000'}}
-             onClick={() => deleteWidget(widget.id)}/>
-        </form>
+            <select value={widget.type}
+                    onChange={(e) => updateWidget(topicId, widget.id, {
+                      "id": widget.id,
+                      "topicId": widget.topicId,
+                      "name": widget.name,
+                      "type": e.target.value,
+                      "text": widget.text,
+                      "size": widget.size,
+                      "widgetOrder": widget.widgetOrder,
+                      "src": widget.src
+                    })}>
+              <option>Heading</option>
+              <option>Paragraph</option>
+              <option>List</option>
+              <option>Image</option>
+            </select>
+            <i className="fas fa-window-close fa-2x col-md-auto"
+               style={{color: '#FF0000'}}
+               onClick={() => deleteWidget(widget.id)}/>
+          </form>
         }
         {
           !preview &&
@@ -67,21 +72,22 @@ const ParagraphWidgetComponent = ({widget, topicId, preview, edit, save, refresh
           <div className="input-group mb-3">
             <div className="input-group-prepend">
                       <span className="input-group-text"
-                            id="basic-addon1">Paragraph Text</span>
+                            id="basic-addon1">Image Address</span>
             </div>
             <input type="text" className="form-control"
                    aria-label="HeadingText"
                    aria-describedby="basic-addon1"
-                   placeholder="Paragraph Text"
-                   value={widget.text}
+                   placeholder="Image Address"
+                   value={widget.src}
                    onChange={(e) => updateWidget(topicId, widget.id, {
                      "id": widget.id,
                      "topicId": widget.topicId,
                      "name": widget.name,
                      "type": widget.type,
-                     "text": e.target.value,
+                     "text": widget.text,
                      "size": widget.size,
-                     "widgetOrder": widget.widgetOrder
+                     "widgetOrder": widget.widgetOrder,
+                     "src": e.target.value
                    })}/>
           </div>
         }
@@ -107,27 +113,23 @@ const ParagraphWidgetComponent = ({widget, topicId, preview, edit, save, refresh
                      "type": widget.type,
                      "text": widget.text,
                      "size": widget.size,
-                     "widgetOrder": widget.widgetOrder
+                     "widgetOrder": widget.widgetOrder,
+                     "src": widget.src
                    })}/>
           </div>
         }
-        {
-          !preview &&
-          <label className="row"/>
-        }
-        {
-          !preview &&
-          <label className="row"/>
-        }
+        <label className="row"/>
+        <label className="row"/>
         {
           !preview &&
           <h3>
             Preview
           </h3>
         }
-        <h4>
-          {widget.text}
-        </h4>
+        {
+          widget.src != null && widget.src.length != 0 &&
+          <img src={`${widget.src}`} className="img-fluid" alt="Responsive image"/>
+        }
       </div>
     </div>;
 
@@ -150,4 +152,4 @@ const dispatchToPropertyMapper = (dispatch) => ({
 export default connect(
     stateToPropertyMapper,
     dispatchToPropertyMapper
-)(ParagraphWidgetComponent);
+)(ImageWidgetComponent);

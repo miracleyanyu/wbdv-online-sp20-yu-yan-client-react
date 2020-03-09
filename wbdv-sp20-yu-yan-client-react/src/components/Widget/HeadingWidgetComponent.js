@@ -2,7 +2,7 @@ import React from "react";
 import {WIDGETS_API_URL} from "../../common/constants";
 import {connect} from "react-redux";
 
-const HeadingWidgetComponent = ({widget, topicId, preview, edit, save, refresh, editing, deleteWidget, updateWidget, changeType, active}) =>
+const HeadingWidgetComponent = ({widget, topicId, preview, edit, save, refresh, editing, deleteWidget, updateWidget, active}) =>
     <div className="container-fluid"
          style={{padding: "10px"}}>
       <div className="col col-10 offset-1 border border-light bg-light">
@@ -22,7 +22,7 @@ const HeadingWidgetComponent = ({widget, topicId, preview, edit, save, refresh, 
                    "type": widget.type,
                    "text": widget.text,
                    "size": widget.size,
-                   "order": widget.order - 1
+                   "widgetOrder": widget.widgetOrder - 1
                  })}/>
             }
             {
@@ -38,7 +38,7 @@ const HeadingWidgetComponent = ({widget, topicId, preview, edit, save, refresh, 
                  "type": widget.type,
                  "text": widget.text,
                  "size": widget.size,
-                 "order": widget.order + 1
+                 "widgetOrder": widget.widgetOrder + 1
                })}/>
             <select value={widget.type}
                     onChange={(e) => updateWidget(topicId, widget.id, {
@@ -48,10 +48,12 @@ const HeadingWidgetComponent = ({widget, topicId, preview, edit, save, refresh, 
                       "type": e.target.value,
                       "text": widget.text,
                       "size": widget.size,
-                      "order": widget.order
+                      "widgetOrder": widget.widgetOrder
                     })}>
               <option>Heading</option>
               <option>Paragraph</option>
+              <option>List</option>
+              <option>Image</option>
             </select>
             <i className="fas fa-window-close fa-2x col-md-auto"
                style={{color: '#FF0000'}}
@@ -81,7 +83,7 @@ const HeadingWidgetComponent = ({widget, topicId, preview, edit, save, refresh, 
                      "type": widget.type,
                      "text": e.target.value,
                      "size": widget.size,
-                     "order": widget.order
+                     "widgetOrder": widget.widgetOrder
                    })}/>
           </div>
         }
@@ -96,7 +98,7 @@ const HeadingWidgetComponent = ({widget, topicId, preview, edit, save, refresh, 
                     "type": widget.type,
                     "text": widget.text,
                     "size": e.target.value,
-                    "order": widget.order
+                    "widgetOrder": widget.widgetOrder
                   })}>
             <option value={1}>Heading 1</option>
             <option value={2}>Heading 2</option>
@@ -126,7 +128,7 @@ const HeadingWidgetComponent = ({widget, topicId, preview, edit, save, refresh, 
                      "type": widget.type,
                      "text": widget.text,
                      "size": widget.size,
-                     "order": widget.order
+                     "widgetOrder": widget.widgetOrder
                    })}/>
           </div>
         }
