@@ -9,7 +9,7 @@ const ImageWidgetComponent = ({widget, topicId, preview, edit, save, refresh, ed
         {
           !preview &&
           <form className="form-inline">
-            <h3 className="form-check-label bg-light col-md-auto font-weight-bold">Image
+            <h3 className="form-check-label bg-light col-md-2 font-weight-bold">Image
               Widget</h3>
             {
               widget.order !== 0 &&
@@ -23,7 +23,8 @@ const ImageWidgetComponent = ({widget, topicId, preview, edit, save, refresh, ed
                    "text": widget.text,
                    "size": widget.size,
                    "widgetOrder": widget.widgetOrder - 1,
-                   "src": widget.src
+                   "src": widget.src,
+                   "style": widget.style
                  })}/>
             }
             {
@@ -40,7 +41,8 @@ const ImageWidgetComponent = ({widget, topicId, preview, edit, save, refresh, ed
                  "text": widget.text,
                  "size": widget.size,
                  "widgetOrder": widget.widgetOrder + 1,
-                 "src": widget.src
+                 "src": widget.src,
+                 "style": widget.style
                })}/>
             <select value={widget.type}
                     onChange={(e) => updateWidget(topicId, widget.id, {
@@ -51,7 +53,8 @@ const ImageWidgetComponent = ({widget, topicId, preview, edit, save, refresh, ed
                       "text": widget.text,
                       "size": widget.size,
                       "widgetOrder": widget.widgetOrder,
-                      "src": widget.src
+                      "src": widget.src,
+                      "style": widget.style
                     })}>
               <option>Heading</option>
               <option>Paragraph</option>
@@ -87,7 +90,8 @@ const ImageWidgetComponent = ({widget, topicId, preview, edit, save, refresh, ed
                      "text": widget.text,
                      "size": widget.size,
                      "widgetOrder": widget.widgetOrder,
-                     "src": e.target.value
+                     "src": e.target.value,
+                     "style": widget.style
                    })}/>
           </div>
         }
@@ -114,7 +118,8 @@ const ImageWidgetComponent = ({widget, topicId, preview, edit, save, refresh, ed
                      "text": widget.text,
                      "size": widget.size,
                      "widgetOrder": widget.widgetOrder,
-                     "src": widget.src
+                     "src": widget.src,
+                     "style": widget.style
                    })}/>
           </div>
         }

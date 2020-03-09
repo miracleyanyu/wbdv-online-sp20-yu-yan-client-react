@@ -3,6 +3,7 @@ import WidgetListItem from "./WidgetListItem";
 import HeadingWidgetComponent from "./HeadingWidgetComponent";
 import ParagraphWidgetComponent from "./ParagraphWidgetComponent";
 import ImageWidgetComponent from "./ImageWidgetComponent";
+import ListWidgetComponent from "./ListWidgetComponent";
 
 class WidgetListComponent extends React.Component {
 
@@ -86,6 +87,25 @@ class WidgetListComponent extends React.Component {
                     deleteWidget={this.props.deleteWidget}
                     updateWidget={this.props.updateWidget}
                     editing={widget.id === this.state.editingWidgetId}
+                    active={widget.id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/> ||
+                widget.type === 'List' &&
+                <ListWidgetComponent
+                    preview={this.props.preview}
+                    widget={widget}
+                    topicId={this.props.topicId}
+                    edit={() => {
+                      const widgetId = widget.id;
+                      this.props.history.push(`/course-editor/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}`);
+                      this.setState({
+                        editingWidgetId: widget.id
+                      })
+                    }}
+                    save={() => this.setState({
+                      editingWidgetId: ''
+                    })}
+                    deleteWidget={this.props.deleteWidget}
+                    updateWidget={this.props.updateWidget}
+                    editing={widget.id === this.state.editingWidgetId}
                     active={widget.id === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}/>
             )
           }
@@ -98,7 +118,8 @@ class WidgetListComponent extends React.Component {
                      onClick={() => this.props.createWidget(this.props.topicId, {
                        'name': 'New Widget',
                        'type': 'Heading',
-                       'size': 1
+                       'size': 1,
+                       'style': 'Unordered'
                      })}/>
               </a>
             }

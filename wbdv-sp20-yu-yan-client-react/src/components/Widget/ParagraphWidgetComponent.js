@@ -9,7 +9,7 @@ const ParagraphWidgetComponent = ({widget, topicId, preview, edit, save, refresh
         {
           !preview &&
         <form className="form-inline">
-          <h3 className="form-check-label bg-light col-md-auto font-weight-bold">Paragraph
+          <h3 className="form-check-label bg-light col-md-2 font-weight-bold">Paragraph
             Widget</h3>
           {
             widget.order !== 0 &&
@@ -22,7 +22,8 @@ const ParagraphWidgetComponent = ({widget, topicId, preview, edit, save, refresh
                  "type": widget.type,
                  "text": widget.text,
                  "size": widget.size,
-                 "widgetOrder": widget.widgetOrder - 1
+                 "widgetOrder": widget.widgetOrder - 1,
+                 "style": widget.style
                })}/>
           }
           {
@@ -38,7 +39,8 @@ const ParagraphWidgetComponent = ({widget, topicId, preview, edit, save, refresh
                "type": widget.type,
                "text": widget.text,
                "size": widget.size,
-               "widgetOrder": widget.widgetOrder + 1
+               "widgetOrder": widget.widgetOrder + 1,
+               "style": widget.style
              })}/>
           <select value={widget.type}
                   onChange={(e) => updateWidget(topicId, widget.id, {
@@ -48,10 +50,13 @@ const ParagraphWidgetComponent = ({widget, topicId, preview, edit, save, refresh
                     "type": e.target.value,
                     "text": widget.text,
                     "size": widget.size,
-                    "widgetOrder": widget.widgetOrder
+                    "widgetOrder": widget.widgetOrder,
+                    "style": widget.style
                   })}>
             <option>Heading</option>
             <option>Paragraph</option>
+            <option>List</option>
+            <option>Image</option>
           </select>
           <i className="fas fa-window-close fa-2x col-md-auto"
              style={{color: '#FF0000'}}
@@ -81,7 +86,8 @@ const ParagraphWidgetComponent = ({widget, topicId, preview, edit, save, refresh
                      "type": widget.type,
                      "text": e.target.value,
                      "size": widget.size,
-                     "widgetOrder": widget.widgetOrder
+                     "widgetOrder": widget.widgetOrder,
+                     "style": widget.style
                    })}/>
           </div>
         }
@@ -107,7 +113,8 @@ const ParagraphWidgetComponent = ({widget, topicId, preview, edit, save, refresh
                      "type": widget.type,
                      "text": widget.text,
                      "size": widget.size,
-                     "widgetOrder": widget.widgetOrder
+                     "widgetOrder": widget.widgetOrder,
+                     "style": widget.style
                    })}/>
           </div>
         }
