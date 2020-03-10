@@ -18,13 +18,13 @@ export const createWidget = (topicId, widget) =>
     }).then(response => response.json());
 
 export const deleteWidget = (widgetId) =>
-    fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
+    fetch(`http://cs5610-sp20-yyan-a6-server.herokuapp.com/api/widgets/${widgetId}`, {
       method: 'DELETE'
     })
     .then(response => response.json());
 
 export const updateWidget = (widgetId, widget) =>
-    fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
+    fetch(`http://cs5610-sp20-yyan-a6-server.herokuapp.com/api/widgets/${widgetId}`, {
       method: 'PUT',
       body: JSON.stringify(widget),
       headers: {

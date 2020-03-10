@@ -80,7 +80,7 @@ const ImageWidgetComponent = ({widget, topicId, preview, edit, save, refresh, ed
             <input type="text" className="form-control"
                    aria-label="HeadingText"
                    aria-describedby="basic-addon1"
-                   placeholder="Image Address"
+                   placeholder="Image URL"
                    value={widget.src}
                    onChange={(e) => updateWidget(topicId, widget.id, {
                      "id": widget.id,

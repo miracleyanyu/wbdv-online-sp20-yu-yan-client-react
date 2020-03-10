@@ -37,8 +37,7 @@ class TopicPillsComponent extends React.Component {
                     }}
                     edit={() => {
                       const topicId = topic.id;
-                      console.log(topicId);
-                      this.props.history.push(`/course-editor/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}`);
+                      this.props.history.push(`/course-editor/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${topicId}`);
                       this.setState({
                         editingTopicId: topic.id
                       })

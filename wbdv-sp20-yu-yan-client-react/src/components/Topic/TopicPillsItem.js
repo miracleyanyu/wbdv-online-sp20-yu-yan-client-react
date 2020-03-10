@@ -21,7 +21,7 @@ const TopicPillsItem = ({topic, lessonId, edit, save, refresh, editing, deleteTo
               editing &&
               <i className="">
                 <input value={topic.title}
-                       onChange={(e) => updateTopic(lessonId, topic._id, e.target.value)}/>
+                       onChange={(e) => updateTopic(lessonId, topic.id, e.target.value)}/>
               </i>
             }
           </div>
@@ -37,7 +37,7 @@ const TopicPillsItem = ({topic, lessonId, edit, save, refresh, editing, deleteTo
                   <i className="fas fa-save col-md-1"
                      onClick={save}/>
                   <i className="far fa-trash-alt col-md-1"
-                     onClick={() => deleteTopic(topic._id)}/>
+                     onClick={() => deleteTopic(topic.id)}/>
                 </span>
             }
           </div>

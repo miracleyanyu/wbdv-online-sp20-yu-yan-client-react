@@ -30,7 +30,7 @@ class WidgetListComponent extends React.Component {
     return (
         <div className="row">
           {
-            this.props.widgets && this.props.widgets.sort((a, b) => a.widgetOrder - b.widgetOrder).map(widget =>
+            this.props.widgets.length > 0 && this.props.widgets.sort((a, b) => a.widgetOrder - b.widgetOrder).map(widget =>
               widget.type === 'Heading' &&
               <HeadingWidgetComponent
                   preview={this.props.preview}

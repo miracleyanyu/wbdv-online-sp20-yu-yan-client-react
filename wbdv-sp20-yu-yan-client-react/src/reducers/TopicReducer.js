@@ -20,7 +20,7 @@ const topicReducer = (
     case "DELETE_TOPIC":
       return {
         topics: state.topics.filter(topic =>
-            topic._id !== action.topicId
+            topic.id !== action.topicId
         )
       };
     case "UPDATE_TOPIC":
